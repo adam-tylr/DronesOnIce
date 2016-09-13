@@ -1,3 +1,0 @@
-Adam Tyler.147
-
-Create a new unity project and then import the unity package. Click the “TylerLab2” scene then click play. A maze will be generated programmatically using a form of prim’s algorithm. The game piece is in the bottom left corner. It is a triangular figure generated using a mesh. Using the arrow keys or wasd, the figure can be moved and will rotate in the direction its being moved. Pressing zero toggles rotation of the entire maze. The green corner is the end of the maze. The game piece will not travel through the walls. 
