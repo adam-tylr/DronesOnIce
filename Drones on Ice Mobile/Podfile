@@ -1,0 +1,4 @@
+use_frameworks!
+target 'Drones on Ice Mobile' do
+	pod 'SwiftHTTP', '~> 1.0.4'
+end
