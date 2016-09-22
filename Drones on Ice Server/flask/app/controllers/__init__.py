@@ -43,4 +43,10 @@ class User(Resource):
     @auth.login_required
     def get(self):
         return {'first_name': g.user.first_name, 'last_name': g.user.last_name}
+
+class PlaceOrder(Resource):
+    @auth.login_required
+    def post(self):
+
+        return 0
         
