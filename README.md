@@ -43,6 +43,7 @@ Response:
 ```
 ---
 ###Get User Info
+Request:
 ```
 GET /user
 ```
