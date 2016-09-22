@@ -1,5 +1,8 @@
-from app import db
+from flask import g
+from app import app, db, auth
 from passlib.apps import custom_app_context as pwd_context
+from itsdangerous import (TimedJSONWebSignatureSerializer
+                          as Serializer, BadSignature, SignatureExpired)
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -30,3 +33,12 @@ class User(db.Model):
             return None # invalid token
         user = User.query.get(data['id'])
         return user
+
+@auth.verify_password
+def verify_password(token, none):
+    # first try to authenticate by token
+    user = User.verify_auth_token(token)
+    if not user:
+        return False
+    g.user = user
+    return True
