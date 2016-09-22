@@ -45,9 +45,9 @@ Response:
 ###Get User Info
 ```
 GET /user
-'''
+```
 Response
-'''
+```
 {
   "first_name": "Adam",
   "last_name": "Tyler"
