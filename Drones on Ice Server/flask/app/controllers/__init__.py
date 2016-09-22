@@ -2,8 +2,8 @@ from flask import request, jsonify, json, g
 from flask_restful import Resource
 from app.validator import UserSchema
 from app.validator import LoginSchema
-from app.models import User
 from app import db, auth
+from app.models import User, Order
 
 class HelloWorld(Resource):
     def get(self):
@@ -23,7 +23,8 @@ class Register(Resource):
         user.hash_password(data['password'])
         db.session.add(user)
         db.session.commit()
-        return {'username': user.username}
+        token = user.generate_auth_token()
+        return { 'token': token.decode('ascii') }
 
 
 class Login(Resource):
@@ -39,7 +40,7 @@ class Login(Resource):
         return { 'token': token.decode('ascii') }
 
 
-class User(Resource):
+class UserInfo(Resource):
     @auth.login_required
     def get(self):
         return {'first_name': g.user.first_name, 'last_name': g.user.last_name}

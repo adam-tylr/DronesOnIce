@@ -47,7 +47,7 @@ def verify_password(token, none):
 class Order(db.Model):
     __tablename__ = 'orders'
     id = db.Column(db.Integer, primary_key = True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     location = db.Column(db.String(100))
     flavor = db.Column(db.String(50))
     total = db.Column(db.Integer)
