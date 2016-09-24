@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		409E4F0B2899F088A0D48B3F /* Pods_Drones_on_Ice_Mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3588719F5D98B6FD07B1AAF /* Pods_Drones_on_Ice_Mobile.framework */; };
 		9481A7ED1D94A37C007E760F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9481A7EC1D94A37C007E760F /* AppDelegate.swift */; };
 		9481A7EF1D94A37C007E760F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9481A7EE1D94A37C007E760F /* ViewController.swift */; };
 		9481A7F21D94A37D007E760F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9481A7F01D94A37D007E760F /* Main.storyboard */; };
 		9481A7F41D94A37D007E760F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9481A7F31D94A37D007E760F /* Assets.xcassets */; };
 		9481A7F71D94A37D007E760F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9481A7F51D94A37D007E760F /* LaunchScreen.storyboard */; };
+		9481A7FF1D96DF73007E760F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9481A7FE1D96DF73007E760F /* RegisterViewController.swift */; };
+		9481A8011D96DF89007E760F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9481A8001D96DF89007E760F /* SignInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		213AAC4E01F913011EDEE8CC /* Pods-Drones on Ice Mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drones on Ice Mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-Drones on Ice Mobile/Pods-Drones on Ice Mobile.release.xcconfig"; sourceTree = "<group>"; };
 		9481A7E91D94A37C007E760F /* Drones on Ice Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drones on Ice Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9481A7EC1D94A37C007E760F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9481A7EE1D94A37C007E760F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +26,10 @@
 		9481A7F31D94A37D007E760F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9481A7F61D94A37D007E760F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9481A7F81D94A37D007E760F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9481A7FE1D96DF73007E760F /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		9481A8001D96DF89007E760F /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ../SignInViewController.swift; sourceTree = "<group>"; };
+		D3588719F5D98B6FD07B1AAF /* Pods_Drones_on_Ice_Mobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drones_on_Ice_Mobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9DE19EEEC0ADEDA437161EC /* Pods-Drones on Ice Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drones on Ice Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Drones on Ice Mobile/Pods-Drones on Ice Mobile.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +37,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				409E4F0B2899F088A0D48B3F /* Pods_Drones_on_Ice_Mobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		79C8D47FE89EF9BA7E1D2EFD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D3588719F5D98B6FD07B1AAF /* Pods_Drones_on_Ice_Mobile.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9481A7E01D94A37C007E760F = {
 			isa = PBXGroup;
 			children = (
 				9481A7EB1D94A37C007E760F /* Drones on Ice Mobile */,
 				9481A7EA1D94A37C007E760F /* Products */,
+				AF9798ECED5342BDDA60D40A /* Pods */,
+				79C8D47FE89EF9BA7E1D2EFD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +73,8 @@
 		9481A7EB1D94A37C007E760F /* Drones on Ice Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				9481A8001D96DF89007E760F /* SignInViewController.swift */,
+				9481A7FE1D96DF73007E760F /* RegisterViewController.swift */,
 				9481A7EC1D94A37C007E760F /* AppDelegate.swift */,
 				9481A7EE1D94A37C007E760F /* ViewController.swift */,
 				9481A7F01D94A37D007E760F /* Main.storyboard */,
@@ -64,6 +85,15 @@
 			path = "Drones on Ice Mobile";
 			sourceTree = "<group>";
 		};
+		AF9798ECED5342BDDA60D40A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E9DE19EEEC0ADEDA437161EC /* Pods-Drones on Ice Mobile.debug.xcconfig */,
+				213AAC4E01F913011EDEE8CC /* Pods-Drones on Ice Mobile.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9481A7FB1D94A37D007E760F /* Build configuration list for PBXNativeTarget "Drones on Ice Mobile" */;
 			buildPhases = (
+				3CEAB2C337A799EFAA410480 /* [CP] Check Pods Manifest.lock */,
 				9481A7E51D94A37C007E760F /* Sources */,
 				9481A7E61D94A37C007E760F /* Frameworks */,
 				9481A7E71D94A37C007E760F /* Resources */,
+				3AC914C8E2642E7E423B935B /* [CP] Embed Pods Frameworks */,
+				3675E150B6A70F778A2CB34D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,11 +165,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3675E150B6A70F778A2CB34D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Drones on Ice Mobile/Pods-Drones on Ice Mobile-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3AC914C8E2642E7E423B935B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Drones on Ice Mobile/Pods-Drones on Ice Mobile-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3CEAB2C337A799EFAA410480 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9481A7E51D94A37C007E760F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9481A8011D96DF89007E760F /* SignInViewController.swift in Sources */,
+				9481A7FF1D96DF73007E760F /* RegisterViewController.swift in Sources */,
 				9481A7EF1D94A37C007E760F /* ViewController.swift in Sources */,
 				9481A7ED1D94A37C007E760F /* AppDelegate.swift in Sources */,
 			);
@@ -257,6 +340,7 @@
 		};
 		9481A7FC1D94A37D007E760F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9DE19EEEC0ADEDA437161EC /* Pods-Drones on Ice Mobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DUR727DJC3;
@@ -270,6 +354,7 @@
 		};
 		9481A7FD1D94A37D007E760F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 213AAC4E01F913011EDEE8CC /* Pods-Drones on Ice Mobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DUR727DJC3;
@@ -300,6 +385,7 @@
 				9481A7FD1D94A37D007E760F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
