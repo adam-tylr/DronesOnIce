@@ -15,6 +15,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var status: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,9 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func SumbitRegistration(_ sender: AnyObject) {
-        //
+        
+        status.text = "Loading...."
+        
         let parameters: Parameters = [
             "first_name": firstName.text!,
             "last_name": lastName.text!,
@@ -31,34 +34,23 @@ class RegisterViewController: UIViewController {
             "password": password.text!
         ]
         
-        Alamofire.request("http://192.168.1.23:5000/user/register", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { response in
-            debugPrint("All Response Info: \(response)")
+        Alamofire.request("http://192.168.1.131:5000/user/register", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
             
-            if let data = response.result.value, let utf8Text = String(data: data, encoding: .utf8) {
-                print("Data: \(utf8Text)")
+            if let result = response.result.value {
+                let JSON = result as! NSDictionary
+                if let token = JSON["token"]{
+                    let defaults = UserDefaults.standard
+                    defaults.set(token, forKey: "token")
+                    self.navigationController?.popViewController(animated: true)
+                }else {
+                    self.status.text = "\(result)"
+                }
             }
         }
 
-        
-//        var request = URLRequest(url: URL(string: "http://192.168.1.23:5000")!)
-//        request.httpMethod = "POST"
-//        let data = try! JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted);
-//        request.httpBody = data as Data
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            guard let data = data, error == nil else {                                                 // check for fundamental networking error
-//                print("error=\(error)")
-//                return
-//            }
-//            
-//            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-//                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-//                print("response = \(response)")
-//            }
-//            
-//            let responseString = String(data: data, encoding: .utf8)
-//            print("responseString = \(responseString)")
-//        }
-//        task.resume()
+    }
+    @IBAction func dismissKeyboard(_ sender: AnyObject) {
+        self.view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {

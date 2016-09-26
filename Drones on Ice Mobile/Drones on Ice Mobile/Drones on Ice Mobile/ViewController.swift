@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
 
@@ -25,6 +26,27 @@ class ViewController: UIViewController {
         registerButton.layer.borderColor = UIColor.black.cgColor
 
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("fdfgsdfgsdfg")
+        let defaults = UserDefaults.standard
+        let token = defaults.string(forKey: "token") as String!
+        if token != nil{
+            Alamofire.request("http://192.168.1.131:5000/user").authenticate(user: token!, password: "").responseJSON { response in
+                debugPrint(response)
+                if let result = response.result.value {
+                    let JSON = result as! NSDictionary
+                    if let fName = JSON["first_name"] , let lName = JSON["last_name"]{
+                        defaults.set(fName, forKey: "fName")
+                        defaults.set(lName, forKey: "lName")
+                        print(fName)
+                        self.performSegue(withIdentifier: "showOrderPage", sender: nil)
+                    }
+                }
+            }
+        }
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
