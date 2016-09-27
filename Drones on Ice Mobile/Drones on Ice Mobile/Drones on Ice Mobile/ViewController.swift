@@ -24,11 +24,11 @@ class ViewController: UIViewController {
         loginButton.layer.borderColor = UIColor.black.cgColor
         registerButton.layer.borderWidth = 1.0
         registerButton.layer.borderColor = UIColor.black.cgColor
-
+        let defaults = UserDefaults.standard
+        defaults.set(nil, forKey: "token")
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("fdfgsdfgsdfg")
         let defaults = UserDefaults.standard
         let token = defaults.string(forKey: "token") as String!
         if token != nil{
