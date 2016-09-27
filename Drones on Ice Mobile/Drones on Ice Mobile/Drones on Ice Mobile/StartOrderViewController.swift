@@ -8,8 +8,9 @@
 
 import UIKit
 import PassKit
+import CoreLocation
 
-class StartOrderViewController: UIViewController  {
+class StartOrderViewController: UIViewController, CLLocationManagerDelegate  {
 
     var flavor = ""
     
@@ -20,6 +21,9 @@ class StartOrderViewController: UIViewController  {
     
     let SupportedPaymentNetworks = [PKPaymentNetwork.visa, PKPaymentNetwork.masterCard, PKPaymentNetwork.amex, PKPaymentNetwork.discover]
     let ApplePaySwagMerchantID = "merchant.us.adamtyler.drones"
+    var lat = CLLocationDegrees()
+    var lon = CLLocationDegrees()
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +32,14 @@ class StartOrderViewController: UIViewController  {
         let defaults = UserDefaults.standard
         let name = defaults.string(forKey: "fName") as String!
         message.text = "Hey \(name!)! Hungry?"
+        
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        if CLLocationManager.locationServicesEnabled(){
+            print("True")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,8 +67,14 @@ class StartOrderViewController: UIViewController  {
         let applePayController = PKPaymentAuthorizationViewController(paymentRequest: request)
         self.present(applePayController, animated: true, completion: nil)
         applePayController.delegate = self
-        
     
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        lat = locValue.latitude
+        lon = locValue.longitude
     }
 
     
@@ -118,7 +136,9 @@ class StartOrderViewController: UIViewController  {
 extension StartOrderViewController: PKPaymentAuthorizationViewControllerDelegate {
     @available(iOS 8.0, *)
     public func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, completion: @escaping (PKPaymentAuthorizationStatus) -> Void) {
+        // Put the order submit code right here?
         controller.dismiss(animated: true, completion: nil)
+        
     }
 
     @nonobjc func paymentAuthorizationViewController(controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, completion: ((PKPaymentAuthorizationStatus) -> Void)) {

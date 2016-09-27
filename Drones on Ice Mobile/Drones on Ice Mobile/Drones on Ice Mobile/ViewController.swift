@@ -27,6 +27,7 @@ class ViewController: UIViewController {
         let defaults = UserDefaults.standard
         defaults.set(nil, forKey: "token")
     }
+
     
     override func viewDidAppear(_ animated: Bool) {
         let defaults = UserDefaults.standard
