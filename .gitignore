@@ -3,8 +3,9 @@
 
 *.pyc
 
-*.pyc
-
-*.pyc
-
-*.pyc
+Drones on Ice Server/flask/app/controllers/__pycache__/*
+Drones on Ice Server/flask/include/*
+Drones on Ice Server/flask/Lib/*
+Drones on Ice Server/flask/Scripts/*
+Drones on Ice Server/flask/__pycache__/*
+Drones on Ice Server/flask/pyvenv.cfg

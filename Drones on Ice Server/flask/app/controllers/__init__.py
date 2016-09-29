@@ -83,7 +83,7 @@ class InternalUser(Resource):
 		db.session.add(user)
 		db.session.commit()
 		token = user.generate_auth_token()
-		return { 'token': token.decode('ascii') }
+		return "User Registered"
 
 		
 class InternalLogin(Resource):
