@@ -5,7 +5,7 @@ This project contains the source for the iOS app and back end
 To get started with the iOS app, open the .xcworkspace file in the mobile project folder
 
 ## Server
-python run.py in the server/flask folder (requires flask flask-restful flask-sqlalchemly flask-httpauth flask-marshmallow passlib)
+python run.py in the server/flask folder (requires flask flask-restful flask-sqlalchemly flask-httpauth flask-marshmallow passlib flask-WTF)
 
 ##Routes
 ###Register a User
