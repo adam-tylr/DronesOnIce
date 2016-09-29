@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class='small-col-12' style='  position: absolute;top: 50%;left:50%;transform: translate(-50%,-50%)'>    
+    <h1>DOI Dashboard Login</h1>
+    <form action="" method="post" name="login">
+    {{ form.hidden_tag() }}
+    <p>
+    Email:<br>
+    {{ form.email(size=60) }}<br>
+    </p>
+        <p>
+    Password:<br>
+    {{ form.password(size=60) }}<br>
+    </p>
+    <p><input type="submit" value="Sign In"></p>
+  </form>
+</div>
+{% endblock %}

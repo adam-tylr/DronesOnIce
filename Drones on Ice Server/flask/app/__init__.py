@@ -7,6 +7,7 @@ from flask_httpauth import HTTPBasicAuth
 app = Flask(__name__)
 api = Api(app)
 app.config.from_object('config')
+app.secret_key = app.config['SECRET_KEY']
 db = SQLAlchemy(app)
 auth = HTTPBasicAuth()
 from app import models

@@ -11,6 +11,8 @@ class User(db.Model):
     password_hash = db.Column(db.String(128))
     first_name = db.Column(db.String(30))
     last_name = db.Column(db.String(30))
+    # 0 is regular, 1 is DOI associate, 2 is admin
+    access = db.Column(db.Integer)
     orders = db.relationship('Order', backref='user', lazy='dynamic')
 
     def hash_password(self, password):
