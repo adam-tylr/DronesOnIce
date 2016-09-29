@@ -1,9 +1,12 @@
 from flask import request, jsonify, json, g
 from flask_restful import Resource
+from sqlalchemy import desc
 from app.validator import UserSchema
 from app.validator import LoginSchema
+from app.validator import OrderSchema
 from app import db, auth
 from app.models import User, Order
+from datetime import datetime
 
 class HelloWorld(Resource):
     def get(self):
@@ -30,6 +33,7 @@ class Register(Resource):
 class Login(Resource):
     def post(self):
         json_data = request.get_json()
+        print(json_data)
         data, errors = LoginSchema().load(json_data)
         if (errors):
             return errors, 400
@@ -45,9 +49,21 @@ class UserInfo(Resource):
     def get(self):
         return {'first_name': g.user.first_name, 'last_name': g.user.last_name}
 
-class PlaceOrder(Resource):
+class Orders(Resource):
     @auth.login_required
     def post(self):
+        json_data = request.get_json()
+        data, errors = OrderSchema().load(json_data)
+        if (errors):
+            return errors, 400
+        order = Order(timestamp=datetime.utcnow(), user=g.user, location=data['location'], flavor=data['flavor'],total=data['total'], status="Order Received")
+        db.session.add(order)
+        db.session.commit()
+        return {'order_number': order.id, 'status': order.status}
 
-        return 0
+    @auth.login_required
+    def get(self):
+        order = Order.query.filter_by(user_id = g.user.id).order_by(desc(Order.timestamp)).first()
+        return {'order_number': order.id, 'time': order.timestamp.isoformat(), 'location': order.location,
+        	 'flavor': order.flavor, 'total': order.total, 'status':order.status}
         
