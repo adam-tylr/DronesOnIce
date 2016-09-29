@@ -7,7 +7,7 @@ To get started with the iOS app, open the .xcworkspace file in the mobile projec
 ## Server
 python run.py in the server/flask folder (requires flask flask-restful flask-sqlalchemly flask-httpauth flask-marshmallow passlib flask-WTF)
 
-##Routes
+##Endpoints
 ###Register a User
 Request
 ```
@@ -45,7 +45,7 @@ Response:
 ###Get User Info
 Request:
 ```
-GET /user
+GET /user  (Requires Token)
 ```
 Response
 ```
@@ -53,4 +53,58 @@ Response
   "first_name": "Adam",
   "last_name": "Tyler"
 }
+```
+###Place Order
+Request
+```
+POST /order (Requires Token)
+
+{
+"flavor": "vanilla",
+"total": "8",
+"location": "my house"
+}
+```
+Response:
+```
+{
+  "status": "Order Received",
+  "order_number": 4
+}
+```
+###Get Order Info
+Request
+```
+Get /order (Requires Token)
+```
+Response:
+```
+{
+  "order_number": 4,
+  "status": "Order Received",
+  "time": "2016-09-29T21:19:52.749827",
+  "total": 8,
+  "flavor": "vanilla",
+  "location": "my house"
+}
+```
+##Internal Website
+###Register a User
+Request
+```
+POST /user/register
+
+{   'username': 'tyler.147@osu.edu',
+    'password': 'Pa$$wd',
+    'first_name': 'Adam',
+    'last_name': 'Tyler'
+}
+```
+###Login
+```
+http://server.com/internal/login
+```
+###Dashboard
+```
+http://server.com/internal/orderstream
 ```
