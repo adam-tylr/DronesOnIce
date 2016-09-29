@@ -37,7 +37,6 @@
         		</tr>
     		{% endfor %} 
     	</table>
-    	{{access}}
     	{% if access == 2 %}
     		<h2>Cancelled Orders</h2>
         	<table class='table table-striped'>
@@ -47,7 +46,6 @@
         			<th>Flavor</th>
         			<th>Status</th>
         			<th>Time</th>
-        			<th>Update</th>
         		</tr>
 				{% for order in cancelled_orders %}
         			<tr>
@@ -56,9 +54,25 @@
         				<td>{{order.flavor}}</td>
         				<td>{{order.status}}</td>
         				<td>{{order.timestamp}}</td>
-        				<td>
-        					<a href="/internal/order/enable?order={{order.id}}" class="btn btn-success" role="button">Set back to Received</a>
-        				</td>
+        			</tr>
+    			{% endfor %} 
+    		</table>
+    		<h2>Shipped Orders</h2>
+        	<table class='table table-striped'>
+        		<tr>
+        			<th>Name</th>
+        			<th>Location</th>
+        			<th>Flavor</th>
+        			<th>Status</th>
+        			<th>Time</th>
+        		</tr>
+				{% for order in shipped_orders %}
+        			<tr>
+        				<td>{{order.user.first_name}} {{order.user.last_name}}</td>
+        				<td>{{order.location}}</td>
+        				<td>{{order.flavor}}</td>
+        				<td>{{order.status}}</td>
+        				<td>{{order.timestamp}}</td>
         			</tr>
     			{% endfor %} 
     		</table>

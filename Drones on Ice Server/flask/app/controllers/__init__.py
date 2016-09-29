@@ -158,16 +158,3 @@ class InternalCancelOrder(Resource):
 		db.session.commit()
 		return redirect("/internal/orderstream")
         
-        
-class InternalEnableOrder(Resource):
-	
-	def get(self):
-		if not 'user' in session:
-			flash("You must be logged in to access this page")
-			return redirect("/internal/login")
-		orderNum = request.args["order"]
-		order = Order.query.get(orderNum)
-		order.status = "Order Received"
-		db.session.add(order)
-		db.session.commit()
-		return redirect("/internal/orderstream")
