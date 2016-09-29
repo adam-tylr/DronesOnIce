@@ -25,17 +25,44 @@
         	</tr>
 			{% for order in open_orders %}
         		<tr>
-        			<td>{{order.user_id}}</td>
+        			<td>{{order.user.first_name}} {{order.user.last_name}}</td>
         			<td>{{order.location}}</td>
         			<td>{{order.flavor}}</td>
         			<td>{{order.status}}</td>
         			<td>{{order.timestamp}}</td>
         			<td>
-        				<a href="#" class="btn btn-info" role="button">Mark as Shipped</a>
-        				<a href="#" class="btn btn-danger" role="button">Cancel Order</a>
+        				<a href="/internal/order/ship?order={{order.id}}" class="btn btn-info" role="button">Mark as Shipped</a>
+        				<a href="/internal/order/cancel?order={{order.id}}" class="btn btn-danger" role="button">Cancel Order</a>
         			</td>
         		</tr>
     		{% endfor %} 
-    	</table>  
+    	</table>
+    	{{access}}
+    	{% if access == 2 %}
+    		<h2>Cancelled Orders</h2>
+        	<table class='table table-striped'>
+        		<tr>
+        			<th>Name</th>
+        			<th>Location</th>
+        			<th>Flavor</th>
+        			<th>Status</th>
+        			<th>Time</th>
+        			<th>Update</th>
+        		</tr>
+				{% for order in cancelled_orders %}
+        			<tr>
+        				<td>{{order.user.first_name}} {{order.user.last_name}}</td>
+        				<td>{{order.location}}</td>
+        				<td>{{order.flavor}}</td>
+        				<td>{{order.status}}</td>
+        				<td>{{order.timestamp}}</td>
+        				<td>
+        					<a href="/internal/order/enable?order={{order.id}}" class="btn btn-success" role="button">Set back to Received</a>
+        				</td>
+        			</tr>
+    			{% endfor %} 
+    		</table>
+    	{% endif %}
+    </div> 
 </div>
 {% endblock %}

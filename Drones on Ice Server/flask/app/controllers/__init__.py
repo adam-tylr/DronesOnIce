@@ -123,9 +123,51 @@ class InternalDashboard(Resource):
 			return redirect("/internal/login")
 		user = User.query.get(session['user'])
 		name = user.first_name + ' ' + user.last_name
-		open_orders = Order.query.filter_by(status = "Order Received").order_by(desc(Order.timestamp))
+		open_orders = Order.query.filter_by(status = "Order Received").order_by(Order.timestamp)
+		cancelled_orders = Order.query.filter_by(status = "Cancelled").order_by(Order.timestamp)
+		shipped_orders = Order.query.filter_by(status = "Shipped").order_by(Order.timestamp)
 		headers = {'Content-Type': 'text/html'}
-		return make_response(render_template("orderstream.html", user_name=name, open_orders=open_orders),200,headers)
+		return make_response(render_template("orderstream.html", user_name=name, open_orders=open_orders,
+				cancelled_orders=cancelled_orders, shipped_orders=shipped_orders, access=user.access),200,headers)
 		
 
+class InternalShipOrder(Resource):
+	
+	def get(self):
+		if not 'user' in session:
+			flash("You must be logged in to access this page")
+			return redirect("/internal/login")
+		orderNum = request.args["order"]
+		order = Order.query.get(orderNum)
+		order.status = "Shipped"
+		db.session.add(order)
+		db.session.commit()
+		return redirect("/internal/orderstream")
+		
+
+class InternalCancelOrder(Resource):
+	
+	def get(self):
+		if not 'user' in session:
+			flash("You must be logged in to access this page")
+			return redirect("/internal/login")
+		orderNum = request.args["order"]
+		order = Order.query.get(orderNum)
+		order.status = "Cancelled"
+		db.session.add(order)
+		db.session.commit()
+		return redirect("/internal/orderstream")
         
+        
+class InternalEnableOrder(Resource):
+	
+	def get(self):
+		if not 'user' in session:
+			flash("You must be logged in to access this page")
+			return redirect("/internal/login")
+		orderNum = request.args["order"]
+		order = Order.query.get(orderNum)
+		order.status = "Order Received"
+		db.session.add(order)
+		db.session.commit()
+		return redirect("/internal/orderstream")
