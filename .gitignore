@@ -3,6 +3,7 @@
 
 *.pyc
 
+.DS_Store
 Drones on Ice Server/flask/app/controllers/__pycache__/*
 Drones on Ice Server/flask/include/*
 Drones on Ice Server/flask/Lib/*

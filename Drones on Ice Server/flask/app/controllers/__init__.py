@@ -19,7 +19,10 @@ class Register(Resource):
         json_data = request.get_json()
         data, errors = UserSchema().load(json_data)
         if (errors):
-            return errors, 400
+        	msg = ""
+        	for error in errors:
+        		msg = msg + error + ": " +errors[error][0] + " "
+        	return {"error": msg}, 400
         if (User.query.filter_by(username=data['username']).first() is not None):
             return {'error': 'Email address in use'}, 200
         user = User(username=data['username'], first_name=data['first_name'],
@@ -37,7 +40,10 @@ class Login(Resource):
         print(json_data)
         data, errors = LoginSchema().load(json_data)
         if (errors):
-            return errors, 400
+        	msg = ""
+        	for error in errors:
+        		msg = msg + error + ": " +errors[error][0] + " "
+        	return {"error": msg}, 400
         user = User.query.filter_by(username=data['username']).first()
         if (user is None or not user.verify_password(data['password'])):
             return {'error': 'Email or password is invalid'}
@@ -56,7 +62,10 @@ class Orders(Resource):
         json_data = request.get_json()
         data, errors = OrderSchema().load(json_data)
         if (errors):
-            return errors, 400
+        	msg = ""
+        	for error in errors:
+        		msg = msg + error + ": " +errors[error][0] + " "
+        	return {"error": msg}, 400
         order = Order(timestamp=datetime.utcnow(), user=g.user, location=data['location'], flavor=data['flavor'],total=data['total'], status="Order Received")
         db.session.add(order)
         db.session.commit()

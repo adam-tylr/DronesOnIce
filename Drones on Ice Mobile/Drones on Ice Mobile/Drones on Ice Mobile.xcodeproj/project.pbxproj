@@ -15,8 +15,8 @@
 		9481A7F71D94A37D007E760F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9481A7F51D94A37D007E760F /* LaunchScreen.storyboard */; };
 		9481A7FF1D96DF73007E760F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9481A7FE1D96DF73007E760F /* RegisterViewController.swift */; };
 		9481A8011D96DF89007E760F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9481A8001D96DF89007E760F /* SignInViewController.swift */; };
+		94D83E471D9DCF8E0068560F /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D83E461D9DCF8E0068560F /* ConfirmationViewController.swift */; };
 		94DC17171D99E5E900ABB28B /* StartOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC17161D99E5E900ABB28B /* StartOrderViewController.swift */; };
-		94DC171A1D9A04BC00ABB28B /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC17191D9A04BC00ABB28B /* Address.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,9 +30,9 @@
 		9481A7F81D94A37D007E760F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9481A7FE1D96DF73007E760F /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9481A8001D96DF89007E760F /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ../SignInViewController.swift; sourceTree = "<group>"; };
+		94D83E461D9DCF8E0068560F /* ConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 		94DC17161D99E5E900ABB28B /* StartOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartOrderViewController.swift; sourceTree = "<group>"; };
 		94DC17181D99FD2500ABB28B /* Drones on Ice Mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Drones on Ice Mobile.entitlements"; sourceTree = "<group>"; };
-		94DC17191D9A04BC00ABB28B /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		D3588719F5D98B6FD07B1AAF /* Pods_Drones_on_Ice_Mobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drones_on_Ice_Mobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9DE19EEEC0ADEDA437161EC /* Pods-Drones on Ice Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drones on Ice Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Drones on Ice Mobile/Pods-Drones on Ice Mobile.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,8 +84,8 @@
 				9481A7EC1D94A37C007E760F /* AppDelegate.swift */,
 				9481A7EE1D94A37C007E760F /* ViewController.swift */,
 				9481A7F01D94A37D007E760F /* Main.storyboard */,
-				94DC17191D9A04BC00ABB28B /* Address.swift */,
 				94DC17161D99E5E900ABB28B /* StartOrderViewController.swift */,
+				94D83E461D9DCF8E0068560F /* ConfirmationViewController.swift */,
 				9481A7F31D94A37D007E760F /* Assets.xcassets */,
 				9481A7F51D94A37D007E760F /* LaunchScreen.storyboard */,
 				9481A7F81D94A37D007E760F /* Info.plist */,
@@ -231,7 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94DC171A1D9A04BC00ABB28B /* Address.swift in Sources */,
+				94D83E471D9DCF8E0068560F /* ConfirmationViewController.swift in Sources */,
 				94DC17171D99E5E900ABB28B /* StartOrderViewController.swift in Sources */,
 				9481A8011D96DF89007E760F /* SignInViewController.swift in Sources */,
 				9481A7FF1D96DF73007E760F /* RegisterViewController.swift in Sources */,

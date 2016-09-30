@@ -9,8 +9,9 @@
 import UIKit
 import PassKit
 import CoreLocation
+import Alamofire
 
-class StartOrderViewController: UIViewController, CLLocationManagerDelegate  {
+class StartOrderViewController: UIViewController, CLLocationManagerDelegate, PKPaymentAuthorizationViewControllerDelegate  {
 
     var flavor = ""
     
@@ -40,8 +41,9 @@ class StartOrderViewController: UIViewController, CLLocationManagerDelegate  {
         if CLLocationManager.locationServicesEnabled(){
             print("True")
         }
+        payButton.isHidden = true;
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -49,7 +51,6 @@ class StartOrderViewController: UIViewController, CLLocationManagerDelegate  {
     
     @IBAction func pay(_ sender: AnyObject) {
         let request = PKPaymentRequest()
-
         request.merchantIdentifier = ApplePaySwagMerchantID
         request.supportedNetworks = SupportedPaymentNetworks
         request.merchantCapabilities = PKMerchantCapability.capability3DS
@@ -63,7 +64,6 @@ class StartOrderViewController: UIViewController, CLLocationManagerDelegate  {
         
         
         request.requiredShippingAddressFields = PKAddressField.all
-        
         let applePayController = PKPaymentAuthorizationViewController(paymentRequest: request)
         self.present(applePayController, animated: true, completion: nil)
         applePayController.delegate = self
@@ -82,43 +82,50 @@ class StartOrderViewController: UIViewController, CLLocationManagerDelegate  {
         flavor = "Vanilla"
         flavorText.text = "Flavor: \(flavor)"
         totalText.text = "Total: $8.00"
+        payButton.isHidden = false;
     }
     @IBAction func chocTap(_ sender: AnyObject) {
         flavor = "Chocolate"
         flavorText.text = "Flavor: \(flavor)"
         totalText.text = "Total: $8.00"
+        payButton.isHidden = false;
     }
     @IBAction func strawberryTap(_ sender: AnyObject) {
         flavor = "Strawberry"
         flavorText.text = "Flavor: \(flavor)"
         totalText.text = "Total: $8.00"
+        payButton.isHidden = false;
     }
     @IBAction func berryTap(_ sender: AnyObject) {
         flavor = "Berry Crisp"
         flavorText.text = "Flavor: \(flavor)"
         totalText.text = "Total: $8.00"
+        payButton.isHidden = false;
     }
     @IBAction func caramelTap(_ sender: AnyObject) {
         flavor = "Caramel"
         flavorText.text = "Flavor: \(flavor)"
         totalText.text = "Total: $8.00"
+        payButton.isHidden = false;
     }
     @IBAction func coffeeTap(_ sender: AnyObject) {
         flavor = "Coffee"
         flavorText.text = "Flavor: \(flavor)"
         totalText.text = "Total: $8.00"
+        payButton.isHidden = false;
     }
     @IBAction func pbTap(_ sender: AnyObject) {
         flavor = "Peanut Butter"
         flavorText.text = "Flavor: \(flavor)"
         totalText.text = "Total: $8.00"
+        payButton.isHidden = false;
     }
     @IBAction func pecanTap(_ sender: AnyObject) {
         flavor = "Pecan"
         flavorText.text = "Flavor: \(flavor)"
         totalText.text = "Total: $8.00"
+        payButton.isHidden = false;
     }
-    
 
 
     /*
@@ -130,17 +137,28 @@ class StartOrderViewController: UIViewController, CLLocationManagerDelegate  {
         // Pass the selected object to the new view controller.
     }
     */
-
-}
-
-extension StartOrderViewController: PKPaymentAuthorizationViewControllerDelegate {
+    
     @available(iOS 8.0, *)
     public func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, completion: @escaping (PKPaymentAuthorizationStatus) -> Void) {
         // Put the order submit code right here?
-        controller.dismiss(animated: true, completion: nil)
+        let parameters: Parameters = [
+            "flavor": flavor,
+            "total": 8,
+            "location": String(format:"%f, %f", lat, lon)
+        ]
+        Alamofire.request("http://192.168.1.131:5000/order", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+            print(response)
+            if let result = response.result.value {
+                let JSON = result as! NSDictionary
+                print(JSON)
+            }
+            
+        }
+        controller.dismiss(animated: true, completion: {self.performSegue(withIdentifier: "showConfirmation", sender: nil)})
+        
         
     }
-
+    
     @nonobjc func paymentAuthorizationViewController(controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, completion: ((PKPaymentAuthorizationStatus) -> Void)) {
         completion(PKPaymentAuthorizationStatus.success)
     }
@@ -148,5 +166,7 @@ extension StartOrderViewController: PKPaymentAuthorizationViewControllerDelegate
     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
         controller.dismiss(animated: true, completion: nil)
     }
-    
+
 }
+
+

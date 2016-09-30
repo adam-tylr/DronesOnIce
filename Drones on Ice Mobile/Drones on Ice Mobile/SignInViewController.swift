@@ -43,7 +43,9 @@ class SignInViewController: UIViewController {
                     defaults.set(token, forKey: "token")
                     self.navigationController?.popViewController(animated: true)
                 }else {
-                    self.status.text = "\(result)"
+                    if let error = JSON["error"]{
+                        self.status.text = "\(error)"
+                    }
                 }
             }
         }
