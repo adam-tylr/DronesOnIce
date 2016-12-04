@@ -16,6 +16,7 @@
 		9481A7FF1D96DF73007E760F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9481A7FE1D96DF73007E760F /* RegisterViewController.swift */; };
 		9481A8011D96DF89007E760F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9481A8001D96DF89007E760F /* SignInViewController.swift */; };
 		94D83E471D9DCF8E0068560F /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D83E461D9DCF8E0068560F /* ConfirmationViewController.swift */; };
+		94D83E491D9E1FC20068560F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D83E481D9E1FC20068560F /* MapKit.framework */; };
 		94DC17171D99E5E900ABB28B /* StartOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC17161D99E5E900ABB28B /* StartOrderViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		9481A7FE1D96DF73007E760F /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9481A8001D96DF89007E760F /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ../SignInViewController.swift; sourceTree = "<group>"; };
 		94D83E461D9DCF8E0068560F /* ConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
+		94D83E481D9E1FC20068560F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		94DC17161D99E5E900ABB28B /* StartOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartOrderViewController.swift; sourceTree = "<group>"; };
 		94DC17181D99FD2500ABB28B /* Drones on Ice Mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Drones on Ice Mobile.entitlements"; sourceTree = "<group>"; };
 		D3588719F5D98B6FD07B1AAF /* Pods_Drones_on_Ice_Mobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drones_on_Ice_Mobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94D83E491D9E1FC20068560F /* MapKit.framework in Frameworks */,
 				409E4F0B2899F088A0D48B3F /* Pods_Drones_on_Ice_Mobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,6 +55,7 @@
 		79C8D47FE89EF9BA7E1D2EFD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				94D83E481D9E1FC20068560F /* MapKit.framework */,
 				D3588719F5D98B6FD07B1AAF /* Pods_Drones_on_Ice_Mobile.framework */,
 			);
 			name = Frameworks;
@@ -141,6 +145,9 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplePay = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
 						};

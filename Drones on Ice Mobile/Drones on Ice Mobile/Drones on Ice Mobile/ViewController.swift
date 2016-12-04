@@ -34,7 +34,6 @@ class ViewController: UIViewController {
         let token = defaults.string(forKey: "token") as String!
         if token != nil{
             Alamofire.request("http://192.168.1.131:5000/user").authenticate(user: token!, password: "").responseJSON { response in
-                debugPrint(response)
                 if let result = response.result.value {
                     let JSON = result as! NSDictionary
                     if let fName = JSON["first_name"] , let lName = JSON["last_name"]{

@@ -24,6 +24,7 @@ class StartOrderViewController: UIViewController, CLLocationManagerDelegate, PKP
     let ApplePaySwagMerchantID = "merchant.us.adamtyler.drones"
     var lat = CLLocationDegrees()
     var lon = CLLocationDegrees()
+    var fullLocation = CLLocationCoordinate2D()
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -38,9 +39,6 @@ class StartOrderViewController: UIViewController, CLLocationManagerDelegate, PKP
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        if CLLocationManager.locationServicesEnabled(){
-            print("True")
-        }
         payButton.isHidden = true;
     }
     
@@ -72,7 +70,6 @@ class StartOrderViewController: UIViewController, CLLocationManagerDelegate, PKP
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
         lat = locValue.latitude
         lon = locValue.longitude
     }
@@ -127,16 +124,26 @@ class StartOrderViewController: UIViewController, CLLocationManagerDelegate, PKP
         payButton.isHidden = false;
     }
 
+    @IBAction func logout(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        defaults.set(nil, forKey: "token")
+        self.dismiss(animated: true, completion: nil)
 
-    /*
+    }
+
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "showConfirmation"{
+            let confirmation = segue.destination as! ConfirmationViewController
+            confirmation.location = CLLocation(latitude: lat, longitude: lon)
+            confirmation.point = self.fullLocation
+        }
     }
-    */
     
     @available(iOS 8.0, *)
     public func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, completion: @escaping (PKPaymentAuthorizationStatus) -> Void) {
@@ -147,7 +154,6 @@ class StartOrderViewController: UIViewController, CLLocationManagerDelegate, PKP
             "location": String(format:"%f, %f", lat, lon)
         ]
         Alamofire.request("http://192.168.1.131:5000/order", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
-            print(response)
             if let result = response.result.value {
                 let JSON = result as! NSDictionary
                 print(JSON)
