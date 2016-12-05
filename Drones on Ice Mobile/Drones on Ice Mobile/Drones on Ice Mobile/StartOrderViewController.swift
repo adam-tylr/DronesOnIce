@@ -153,7 +153,7 @@ class StartOrderViewController: UIViewController, CLLocationManagerDelegate, PKP
             "total": 8,
             "location": String(format:"%f, %f", lat, lon)
         ]
-        Alamofire.request("http://192.168.1.131:5000/order", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+        Alamofire.request("http://76.181.84.191:15666/order", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
             if let result = response.result.value {
                 let JSON = result as! NSDictionary
                 print(JSON)

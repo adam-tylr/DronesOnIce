@@ -45,7 +45,7 @@ class ConfirmationViewController: UIViewController {
         let defaults = UserDefaults.standard
         let token = defaults.string(forKey: "token") as String!
         if token != nil{
-            Alamofire.request("http://192.168.1.131:5000/order").authenticate(user: token!, password: "").responseJSON { response in
+            Alamofire.request("http://76.181.84.191:15666/order").authenticate(user: token!, password: "").responseJSON { response in
                 if let result = response.result.value {
                     let JSON = result as! NSDictionary
                     if let orderNum = JSON["order_number"], let sts = JSON["status"]{
@@ -69,7 +69,7 @@ class ConfirmationViewController: UIViewController {
         let defaults = UserDefaults.standard
         let token = defaults.string(forKey: "token") as String!
         if token != nil{
-            Alamofire.request("http://192.168.1.131:5000/order").authenticate(user: token!, password: "").responseJSON { response in
+            Alamofire.request("http://76.181.84.191:15666/order").authenticate(user: token!, password: "").responseJSON { response in
                 debugPrint(response)
                 if let result = response.result.value {
                     let JSON = result as! NSDictionary

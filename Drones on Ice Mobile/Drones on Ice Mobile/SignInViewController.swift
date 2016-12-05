@@ -34,7 +34,7 @@ class SignInViewController: UIViewController {
             "password": password.text!
         ]
         
-        Alamofire.request("http://192.168.1.131:5000/user/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+        Alamofire.request("http://76.181.84.191:15666/user/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
             
             if let result = response.result.value {
                 let JSON = result as! NSDictionary
