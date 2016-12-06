@@ -149,6 +149,7 @@ class InternalShipOrder(Resource):
 		orderNum = request.args["order"]
 		order = Order.query.get(orderNum)
 		order.status = "Shipped"
+		order.location = "Removed"
 		db.session.add(order)
 		db.session.commit()
 		return redirect("/internal/orderstream")
@@ -163,6 +164,7 @@ class InternalCancelOrder(Resource):
 		orderNum = request.args["order"]
 		order = Order.query.get(orderNum)
 		order.status = "Cancelled"
+		order.location = "Removed"
 		db.session.add(order)
 		db.session.commit()
 		return redirect("/internal/orderstream")
