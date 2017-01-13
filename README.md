@@ -1,4 +1,6 @@
 # Drones On Ice
+Project for Information Security at Ohio State... not real unfortunately :(
+
 This project contains the source for the iOS app and back end
 
 ## iOS App
